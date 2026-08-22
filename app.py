@@ -88,7 +88,8 @@ CORS(
         r"/api/*": {
             "origins": [
                 "http://localhost:5173",
-                "http://localhost:5174"
+                "http://localhost:5174",
+                "https://mediai-1-1f65.onrender.com"
             ]
         }
     }

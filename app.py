@@ -43,9 +43,25 @@ if not SECRET_KEY:
 
 app.config["SECRET_KEY"] = SECRET_KEY
 
-login_manager = LoginManager()
+# ============================================================
+# SESSION COOKIE CONFIGURATION
+# ============================================================
 
-login_manager.init_app(app)
+IS_PRODUCTION = os.getenv("RENDER") == "true"
+
+app.config["SESSION_COOKIE_SAMESITE"] = "None"
+
+app.config["SESSION_COOKIE_SECURE"] = IS_PRODUCTION
+
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+
+# Flask-Login remember cookie
+app.config["REMEMBER_COOKIE_SAMESITE"] = "None"
+
+app.config["REMEMBER_COOKIE_SECURE"] = IS_PRODUCTION
+
+app.config["REMEMBER_COOKIE_HTTPONLY"] = True
+
 
 # ============================================================
 # DATABASE CONFIGURATION

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Medical Advisor</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>Your Trusted Medical Advisor</h1>
+
+            <p class="lead">
+                Get accurate and reliable medical information
+                tailored to your concerns.
+            </p>
+        </header>
+
+
+        <form method="POST" action="/">
+
+            <label for="user_input">
+                Enter Your Medical Query:
+            </label>
+
+            <textarea
+                id="user_input"
+                name="user_input"
+                rows="6"
+                placeholder="Example: I have a headache and fever. What could be the possible causes?"
+                required
+            >{{ user_input or "" }}</textarea>
+
+            <br><br>
+
+            <button type="submit">
+                Submit
+            </button>
+
+        </form>
+
+
+        {% if response %}
+
+        <section class="response">
+
+            <h2>Medical Response</h2>
+
+            <div class="response-text">
+                {{ response }}
+            </div>
+
+        </section>
+
+        {% endif %}
+
+
+        <footer>
+            <p>&copy; 2026 Your Medical Advisor</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

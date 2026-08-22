@@ -1,73 +1,164 @@
-# Medical Query Generator
+# MediAI 🩺
 
-A Flask web application that uses Google's GenerativeAI (Gemini) to generate medical responses based on user input. The application simulates a medical expert providing accurate advice to a patient's query.
+MediAI is a full-stack AI-powered healthcare assistant that helps users manage their health information, understand symptoms, analyze medical reports, organize medicines and prescriptions, and interact with an AI medical assistant.
 
-## About The Project
+The application combines a modern React frontend with a Flask backend and Google's Gemini AI to provide an interactive and user-friendly healthcare experience.
 
-The Medical Query Generator is a web application that leverages Google's GenerativeAI to generate detailed and accurate medical responses. Users input medical queries, and the application provides responses adhering to specific guidelines for clarity, accuracy, and informativeness.
+> ⚠️ **Medical Disclaimer:** MediAI provides AI-generated information for educational and informational purposes only. It is not a replacement for professional medical diagnosis, treatment, or medical advice. Always consult a qualified healthcare professional for medical concerns.
 
-## Getting Started
+---
 
-To get started with the project, follow the steps below.
+## ✨ Features
 
-### Prerequisites
+### 🤖 AI Medical Chat
 
-- Google API Key
-- Google Generativeai
+- Ask general medical and health-related questions.
+- Get AI-generated explanations using Google Gemini.
+- Clean conversational chat interface.
+- Markdown-formatted AI responses.
+- Chat history is stored for authenticated users.
+
+### 🩺 Symptom Checker
+
+- Enter symptoms and receive AI-generated information.
+- Understand possible causes and general health information.
+- Results are saved to the user's health history.
+
+### 📄 Medical Report Analysis
+
+- Upload medical PDF reports.
+- Extract information from uploaded reports.
+- Analyze reports using AI.
+- Store analyzed reports for future reference.
+
+### 💊 Medicine Management
+
+- Add and manage medicines.
+- Track active and completed medicines.
+- Organize medication information.
+- Search medicines easily.
+
+### 📋 Prescription Management
+
+- Save prescriptions.
+- Store prescription dates.
+- Add medicines to prescriptions.
+- Schedule follow-up dates.
+- View and manage saved prescriptions.
+
+### 🕘 Health History
+
+- View previous AI conversations.
+- View symptom-check history.
+- View analyzed medical reports.
+- Delete old history records.
+- Keep health-related activity organized in one place.
+
+### 📊 Dashboard
+
+- Health overview at a glance.
+- AI consultation statistics.
+- Medical report statistics.
+- Health records overview.
+- Quick access to major healthcare features.
+- Recent activity section.
+
+### 🔐 Authentication
+
+- User registration.
+- Secure login.
+- Logout functionality.
+- Protected application routes.
+- Session-based authentication.
+- User profile management.
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- React
+- Vite
+- React Router
+- Tailwind CSS
+- Axios
+- Lucide React
+- React Markdown
+
+### Backend
+
+- Python
 - Flask
-- Python Dotenv
+- Flask-SQLAlchemy
+- Flask-Login
+- Flask-CORS
+- Werkzeug
 
-### Installation
+### Database
 
-1. Clone the repository:
+- SQLite
 
-   ```bash
-   git clone https://github.com/KalyanMurapaka45/Medical-Assisstant.git
-   cd medical-query-generator
-   ```
+### AI
 
-2. Install dependencies:
+- Google Gemini API
+- Google GenAI Python SDK
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+### Other
 
-3. Set up your Google API Key:
+- Pillow
+- PyPDF
+- python-dotenv
+- Gunicorn
 
-   - Create a project on the [Google Cloud Console](https://console.cloud.google.com/).
-   - Enable the GenerativeAI API.
-   - Create an API key and add it to your environment variables or a `.env` file.
+---
 
-4. Run the application:
+## 🏗️ Project Structure
 
-   ```bash
-   python app.py
-   ```
-
-   The application will be accessible at [http://localhost:5000/](http://localhost:5000/).
-
-## Usage
-
-1. Open your web browser and navigate to [http://localhost:5000/](http://localhost:5000/).
-2. Input a medical query following the provided guidelines.
-3. Click the "Generate Response" button to obtain a detailed medical response.
-
-## Contributing
-
-Contributions to the Medical Query Generator are welcome! If you have suggestions, enhancements, or bug fixes, please follow the steps below:
-
-1. Fork the project.
-2. Create your feature branch (`git checkout -b feature/YourFeature`).
-3. Commit your changes (`git commit -m 'Add some feature'`).
-4. Push to the branch (`git push origin feature/YourFeature`).
-5. Open a pull request.
-
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-## Contact
-
-- Your Name - [kalyanmurapaka274@gmail.com](mailto:kalyanmurapaka274@gmail.com)
-
-Project Link: [https://github.com/KalyanMurapaka45/Medical-Assisstant](https://github.com/KalyanMurapaka45/Medical-Assisstant)
+```text
+MediAI/
+│
+├── backend/
+│   └── services/
+│
+├── database/
+│
+├── frontend/
+│   ├── public/
+│   └── src/
+│       ├── assets/
+│       ├── components/
+│       ├── context/
+│       ├── pages/
+│       └── services/
+│
+├── models/
+│   ├── database.py
+│   ├── user.py
+│   ├── chat.py
+│   ├── report.py
+│   └── symptom.py
+│
+├── routes/
+│   ├── auth.py
+│   ├── chat.py
+│   ├── dashboard.py
+│   ├── profile.py
+│   ├── reports.py
+│   └── symptoms.py
+│
+├── services/
+│   └── gemini_service.py
+│
+├── static/
+│
+├── templates/
+│
+├── app.py
+├── migrate_database.py
+├── migrate_reports.py
+├── requirements.txt
+├── package.json
+├── Procfile
+├── LICENSE
+└── README.md

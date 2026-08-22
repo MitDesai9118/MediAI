@@ -10,11 +10,11 @@ from models import User, Chat, MedicalReport, SymptomCheck
 
 from routes.chat import chat_bp
 from routes.auth import auth_bp
-from sqlalchemy import select
 from routes.symptoms import symptom_bp
 from routes.reports import report_bp
 from routes.dashboard import dashboard_bp
 from routes.profile import profile_bp
+
 
 # ============================================================
 # LOAD ENVIRONMENT VARIABLES
@@ -43,23 +43,23 @@ if not SECRET_KEY:
 
 app.config["SECRET_KEY"] = SECRET_KEY
 
+
 # ============================================================
-# SESSION COOKIE CONFIGURATION
+# SESSION / AUTHENTICATION COOKIE CONFIGURATION
 # ============================================================
 
-IS_PRODUCTION = os.getenv("RENDER") == "true"
+# Your production React frontend and Flask backend
+# are hosted on different Render domains.
+#
+# Therefore the authentication cookie must support
+# cross-site HTTPS requests.
 
 app.config["SESSION_COOKIE_SAMESITE"] = "None"
-
-app.config["SESSION_COOKIE_SECURE"] = IS_PRODUCTION
-
+app.config["SESSION_COOKIE_SECURE"] = True
 app.config["SESSION_COOKIE_HTTPONLY"] = True
 
-# Flask-Login remember cookie
 app.config["REMEMBER_COOKIE_SAMESITE"] = "None"
-
-app.config["REMEMBER_COOKIE_SECURE"] = IS_PRODUCTION
-
+app.config["REMEMBER_COOKIE_SECURE"] = True
 app.config["REMEMBER_COOKIE_HTTPONLY"] = True
 
 
@@ -103,13 +103,17 @@ CORS(
     resources={
         r"/api/*": {
             "origins": [
+                # Local React development
                 "http://localhost:5173",
                 "http://localhost:5174",
+
+                # Production React frontend
                 "https://mediai-1-1f65.onrender.com"
             ]
         }
     }
 )
+
 
 # ============================================================
 # INITIALIZE DATABASE
@@ -130,21 +134,34 @@ login_manager.init_app(app)
 @login_manager.user_loader
 def load_user(user_id):
 
-    return db.session.get(
-        User,
-        int(user_id)
-    )
+    try:
+
+        return db.session.get(
+            User,
+            int(user_id)
+        )
+
+    except (TypeError, ValueError):
+
+        return None
+
 
 # ============================================================
 # REGISTER API ROUTES
 # ============================================================
 
 app.register_blueprint(auth_bp)
+
 app.register_blueprint(chat_bp)
+
 app.register_blueprint(symptom_bp)
+
 app.register_blueprint(report_bp)
+
 app.register_blueprint(dashboard_bp)
+
 app.register_blueprint(profile_bp)
+
 
 # ============================================================
 # TEMPORARY OLD FLASK HOME PAGE

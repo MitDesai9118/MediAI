@@ -86,11 +86,13 @@ CORS(
     supports_credentials=True,
     resources={
         r"/api/*": {
-            "origins": "http://localhost:5173"
+            "origins": [
+                "http://localhost:5173",
+                "http://localhost:5174"
+            ]
         }
     }
 )
-
 
 # ============================================================
 # INITIALIZE DATABASE

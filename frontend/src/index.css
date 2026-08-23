@@ -152,3 +152,97 @@ main {
   }
 
 }
+
+/* =========================================================
+   MOBILE RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #root {
+    width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  /* Main containers */
+
+  .container,
+  .page-container,
+  .content-container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Cards */
+
+  .card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Dashboard grids */
+
+  .dashboard-grid,
+  .stats-grid,
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Two-column layouts */
+
+  .two-column,
+  .content-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Buttons */
+
+  button {
+    max-width: 100%;
+  }
+
+  /* Forms */
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Tables */
+
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  /* Sidebar */
+
+  .sidebar {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Headers */
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+}
